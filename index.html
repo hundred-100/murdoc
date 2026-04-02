@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta property="og:title" content="머독 BE공식 팬 사이트">
+	<meta property="og:description" content="아이작대통령코노부타야로배민아저씨종겜동회장님착살단길마레드힐즈레드라인레드윙즈감독썰물단길마파트너스트리머디피를제일좋아하는머도기형따랑해뽑뽀쪽">
+	<meta property="og:image" content="https://yourdomain.com/murdoc_thum.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:url" content="https://yourdomain.com">
+	<meta property="og:type" content="website">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="머독 BE공식 팬 사이트">
+	<meta name="twitter:description" content="아이작대통령코노부타야로배민아저씨종겜동회장님착살단길마레드힐즈레드라인레드윙즈감독썰물단길마파트너스트리머디피를제일좋아하는머도기형따랑해뽑뽀쪽">
+	<meta name="twitter:image" content="https://yourdomain.com/murdoc_thum.png">
+	<meta name="robots" content="index, follow">
+	<link rel="icon" href="/favicon.ico">
+	<title>머독 BE공식 팬 사이트</title>
+	<style>
+		body {
+			margin: 0;
+			overflow-x: hidden;
+			font-family: "Comic Sans MS", cursive;
+			background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+			background-size: 1400% 1400%;
+			animation: rainbow 10s ease infinite;
+		}
+
+		@keyframes rainbow {
+			0% {
+				background-position: 0% 50%;
+			}
+
+			50% {
+				background-position: 100% 50%;
+			}
+
+			100% {
+				background-position: 0% 50%;
+			}
+		}
+
+		.pattern {
+			position: fixed;
+			width: 200%;
+			height: 200%;
+			background: url('face1.webp') repeat;
+			opacity: 0.1;
+			animation: movePattern 20s linear infinite;
+			z-index: 0;
+		}
+
+		@keyframes movePattern {
+			from {
+				transform: translate(0, 0);
+			}
+
+			to {
+				transform: translate(-500px, -500px);
+			}
+		}
+
+		.cursor-img,
+		.fly-img,
+		.pattern {
+			will-change: transform;
+		}
+
+		.cursor-img {
+			position: fixed;
+			width: 80px;
+			height: 80px;
+			pointer-events: none;
+			z-index: 9999;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 3px solid white;
+			box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+			left: 0;
+			top: 0;
+		}
+
+		.fly-img {
+			position: fixed;
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			object-fit: cover;
+			pointer-events: none;
+			z-index: 50;
+			border: 3px solid white;
+			box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+			left: 0;
+			top: 0;
+		}
+
+		@keyframes spin {
+			from {
+				transform: rotate(0deg);
+			}
+
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
+		h1 {
+			font-size: 80px;
+			text-align: center;
+			color: yellow;
+			text-shadow:
+				5px 5px red,
+				-5px -5px blue,
+				0 0 20px white;
+			margin-top: 100px;
+			z-index: 1;
+			position: relative;
+		}
+
+		.box {
+			width: 80%;
+			margin: 50px auto;
+			padding: 20px;
+			background: rgba(255, 255, 255, 0.7);
+			border: 5px dashed hotpink;
+			font-size: 20px;
+			position: relative;
+			z-index: 1;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="pattern"></div>
+
+	<img src="face1.webp" class="cursor-img" id="cursor">
+
+	<h1>머독</h1>
+
+	<div class="box">
+		<h2>소개</h2>
+		<p>머독님은 엄청난 방송을 하는 사람입니다!</p>
+	</div>
+
+	<div class="box">
+		<h2>활동 내역</h2>
+		<p>머독님은 거의 주5회 방송을 합니다!</p>
+	</div>
+
+	<div class="box">
+		<h2>한마디</h2>
+		<p>머독 최고!</p>
+	</div>
+
+	<script>
+		let lastIndex = -1;
+
+		const cursor = document.getElementById("cursor");
+
+		const faceImages = [
+			"face1.webp",
+			"face2.jpg",
+			"face3.jpg",
+			"face4.jpg"
+		];
+
+		let mouseX = 0;
+		let mouseY = 0;
+		let cursorAngle = 0;
+
+		document.addEventListener("mousemove", (e) => {
+			mouseX = e.clientX - 40;
+			mouseY = e.clientY - 40;
+		});
+
+		function animateCursor() {
+			cursorAngle += 3;
+			cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) rotate(${cursorAngle}deg)`;
+			requestAnimationFrame(animateCursor);
+		}
+
+		requestAnimationFrame(animateCursor);
+
+		function rand(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+		function getRandomEdgeSpawn() {
+			const side = rand(0, 3);
+			const w = window.innerWidth;
+			const h = window.innerHeight;
+			const size = 80;
+			const margin = 120;
+
+			let startX, startY, endX, endY;
+
+			if (side === 0) {
+				startX = rand(0, w);
+				startY = -size - margin;
+				endX = rand(0, w);
+				endY = h + size + margin;
+			} else if (side === 1) {
+				startX = w + size + margin;
+				startY = rand(0, h);
+				endX = -size - margin;
+				endY = rand(0, h);
+			} else if (side === 2) {
+				startX = rand(0, w);
+				startY = h + size + margin;
+				endX = rand(0, w);
+				endY = -size - margin;
+			} else {
+				startX = -size - margin;
+				startY = rand(0, h);
+				endX = w + size + margin;
+				endY = rand(0, h);
+			}
+
+			return { startX, startY, endX, endY };
+		}
+
+		function spawnFlyingImage() {
+			const img = document.createElement("img");
+			img.className = "fly-img";
+
+			let index;
+			do {
+				index = rand(0, faceImages.length - 1);
+			} while (index === lastIndex && faceImages.length > 1);
+
+			lastIndex = index;
+			img.src = faceImages[index];
+
+			const pos = getRandomEdgeSpawn();
+			const duration = rand(5000, 9000);
+			const rotateStart = rand(0, 360);
+			const rotateEnd = rotateStart + rand(360, 1080);
+
+			document.body.appendChild(img);
+
+			const startTime = performance.now();
+
+			function animate(now) {
+				const elapsed = now - startTime;
+				const progress = Math.min(elapsed / duration, 1);
+
+				const x = pos.startX + (pos.endX - pos.startX) * progress;
+				const y = pos.startY + (pos.endY - pos.startY) * progress;
+				const rotate = rotateStart + (rotateEnd - rotateStart) * progress;
+
+				img.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg)`;
+
+				if (progress < 1) {
+					requestAnimationFrame(animate);
+				} else {
+					img.remove();
+				}
+			}
+
+			requestAnimationFrame(animate);
+		}
+
+		function scheduleNextSpawn() {
+			const delay = rand(5000, 10000);
+			setTimeout(() => {
+				spawnFlyingImage();
+				scheduleNextSpawn();
+			}, delay);
+		}
+
+		scheduleNextSpawn();
+	</script>
+
+</body>
+
+</html>
